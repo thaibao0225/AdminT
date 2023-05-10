@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Client.Models.ProductsInCartModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/"><i class="fa fa-home"></i> Home</a>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Cart Section Begin -->
+<section class="shop-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Color</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="cart__product__item">
+                                            <img src="@item.pic_ProductImg" alt="" width="40">
+                                            <div class="cart__product__item__title">
+                                                <h6>@item.pic_ProductName</h6>
+                                                @*<div class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>*@
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">$ @item.pic_ProductPrice</td>
+                                        <td class="cart__quantity"> @item.pic_color </td>
+                                        <td class="cart__quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="@item.pic_quantity" readonly>
+                                            </div>
+                                        </td>
+                                        <td class="cart__total">$ @item.pic_SumPrice</td>
+                                        <td class="cart__close"><a asp-controller="Cart" asp-action="CloseProduct" asp-route-id="@item.pic_ProductId" ><span class="icon_close"></span> </a></td>
+                                    </tr>
+                                }
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn">
+                    <a href="/shop">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn update__btn">
+                    <a href="#"><span class="icon_loading"></span> Update cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="discount__content">
+                    <h6>Discount codes</h6>
+                    <form asp-controller="Cart" asp-action="Index" method="get">
+                        <input type="text" placeholder="Enter your coupon code" name="couponCode">
+                        <button type="submit" class="site-btn">Apply</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-2">
+                <div class="cart__total__procced">
+                    <h6>Cart total</h6>
+                    <ul>
+                        @*<li>Subtotal <span>$ 750.0</span></li>*@
+                        <li>Coupon <span>$ @ViewBag.CouponPrice</span></li>
+                        <li>Total <span>$ @ViewBag.SumPrice</span></li>
+                    </ul>
+                    <a asp-controller="Checkout" asp-action="Index" asp-route-couponCode="@ViewBag.CouponCode" class="primary-btn">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Cart Section End -->

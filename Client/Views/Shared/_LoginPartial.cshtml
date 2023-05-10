@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Client.Entites
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="header__right__auth">
+        <a >Hello @User.Identity?.Name!</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+}
+else
+{
+    <div class="header__right__auth">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+}
+
