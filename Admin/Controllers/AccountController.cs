@@ -1,4 +1,5 @@
-﻿using Client.Service.Interface;
+﻿using Client.Models;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,46 +20,31 @@ namespace Admin.Controllers
             return View(_userService.GetUsers());
         }
 
+        [Route("/accounts/Details")]
         // GET: AccountController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            return View(_userService.GetUserById(id));
         }
 
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
+        [Route("/accounts/edit")]
+        public ActionResult Edit(string id)
         {
-            return View();
+            return View(_userService.GetUserById(id));
         }
 
         // POST: AccountController/Edit/5
+        [Route("/accounts/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(string id, UserModel userModel)
         {
             try
             {
+                await _userService.EditUser(userModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -67,19 +53,23 @@ namespace Admin.Controllers
             }
         }
 
+        [Route("/accounts/delete")]
+
         // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            return View(_userService.GetUserById(id));
         }
 
         // POST: AccountController/Delete/5
+        [Route("/accounts/delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(string id, UserModel userModel)
         {
             try
             {
+                await _userService.DeleteUser(userModel.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch

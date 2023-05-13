@@ -1,7 +1,8 @@
 ﻿using Client.Data;
 using Client.Service.Interface;
 using Client.Models;
-using System.Collections.Generic;
+using Client.Entites;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Client.Service
 {
@@ -30,6 +31,62 @@ namespace Client.Service
             }
 
             return userList;
+        }
+
+        public UserModel GetUserById(string userId)
+        {
+            var query = _context.AppUser.FirstOrDefault(x => x.Id == userId);
+
+            if(query != null)
+            {
+                UserModel userModel = new UserModel();
+                userModel.UserName = query.UserName;
+                userModel.Email = query.Email;
+
+                return userModel;
+
+            }
+
+            return new UserModel();
+        }
+
+        public async Task<bool> EditUser(UserModel userModel)
+        {
+            if (userModel != null)
+            {
+                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == userModel.Id);
+
+                if(queryUser != null)
+                {
+                    queryUser.UserName = userModel.UserName;
+                    queryUser.Email = userModel.Email;
+
+                    await _context.SaveChangesAsync();
+
+                    return true;
+                }
+                
+            }
+            return false;   
+        }
+
+
+        public async Task<bool> DeleteUser(string idUser)
+        {
+            if (idUser != "")
+            {
+                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == idUser);
+
+                if (queryUser != null)
+                {
+
+                    _context.AppUser.Remove(queryUser);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+
+            }
+            return false;
         }
     }
 }
