@@ -1,15 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class ContentController : Controller
     {
+        private readonly IContactUserService _contacUserService;
+        public ContentController(IContactUserService contacUserService)
+        {
+            _contacUserService = contacUserService;
+        }
+
         // GET: ContentController
         [Route("/contents")]
         public ActionResult Index()
         {
-            return View();
+            return View(_contacUserService.GetAllContact());
         }
 
         // GET: ContentController/Details/5

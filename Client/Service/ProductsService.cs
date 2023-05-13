@@ -1,5 +1,6 @@
 ﻿using Client.Data;
 using Client.Models;
+using Client.Service.Interface;
 
 namespace Client.Service
 {
@@ -9,6 +10,30 @@ namespace Client.Service
         public ProductsService(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+
+        public List<ProductsModel> GetAllProduct()
+        {
+            var products = from p in _context.Products
+                           join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           select new { p, c };
+
+
+            var productsModel = products.Select(x => new ProductsModel()
+            {
+                pd_Id = x.p.pd_Id,
+                pd_Name = x.p.pd_Name,
+                pd_Img1 = x.p.pd_Img1,
+                pd_Rate = x.p.pd_Rate,
+                pd_Price = x.p.pd_Price,
+                pd_ReducePrice = x.p.pd_ReducePrice,
+                pd_Description = x.p.pd_Description,
+                pd_ShortDescription = x.p.pd_ShortDescription,
+                categoryName = x.c.cg_Name,
+                categorySex = x.c.cg_Sex
+            });
+            return productsModel.ToList();
         }
 
         public List<ProductsModel> GetProductList(int size)

@@ -1,4 +1,4 @@
-﻿namespace Client.Service
+﻿namespace Client.Service.Interface
 {
     public interface IBillService
     {

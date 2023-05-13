@@ -1,6 +1,7 @@
 ﻿using Client.Data;
 using Client.Entites;
 using Client.Models;
+using Client.Service.Interface;
 
 namespace Client.Service
 {

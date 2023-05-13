@@ -1,15 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class RoliesController : Controller
     {
+        private readonly IRoliesService _roleService;
+        public RoliesController(IRoliesService roleService)
+        {
+            _roleService = roleService;
+        }
+
         // GET: RoliesController
         [Route("/rolies")]
         public ActionResult Index()
         {
-            return View();
+            return View(_roleService.GetAllRolies());
         }
 
         // GET: RoliesController/Details/5

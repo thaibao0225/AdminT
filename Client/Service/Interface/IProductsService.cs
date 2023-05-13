@@ -1,9 +1,10 @@
 ﻿using Client.Models;
 
-namespace Client.Service
+namespace Client.Service.Interface
 {
     public interface IProductsService
     {
+        public List<ProductsModel> GetAllProduct();
         public List<ProductsModel> GetProductList(int size);
         public List<ProductsModel> GetProductsInType(string type, int size);
         public List<ProductsModel> GetProductsInSex(string sex, int size);

@@ -1,15 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly ICategoriesService _categoriesService;
+        public CategoriesController(ICategoriesService categoriesService)
+        {
+            _categoriesService = categoriesService;
+        }
+
         // GET: CategoriesController
         [Route("/categories")]
         public ActionResult Index()
         {
-            return View();
+            return View(_categoriesService.GetAllCategories());
         }
 
         // GET: CategoriesController/Details/5

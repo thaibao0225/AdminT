@@ -1,15 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserService _userService;
+        public AccountController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         // GET: AccountController
         [Route("/accounts")]
         public ActionResult Index()
         {
-            return View();
+            return View(_userService.GetUsers());
         }
 
         // GET: AccountController/Details/5

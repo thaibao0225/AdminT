@@ -1,5 +1,7 @@
 using Client.Data;
 using Client.Entites;
+using Client.Service;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,7 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IContactUserService, ContactUserService>();
 
 var app = builder.Build();
 

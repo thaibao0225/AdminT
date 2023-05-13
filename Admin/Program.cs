@@ -1,6 +1,8 @@
 using Client.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Client.Service;
+using Client.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRoliesService, RoliesService>();
+builder.Services.AddTransient<IContactUserService, ContactUserService>();
+builder.Services.AddTransient<IProductsService, ProductsService>();
+builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 
 var app = builder.Build();
 

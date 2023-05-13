@@ -1,6 +1,7 @@
 ﻿using Client.Data;
 using Client.Entites;
 using Client.Service;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,12 +13,14 @@ namespace Client.Controllers
         private readonly ILogger<ContactController> _logger;
         private readonly ApplicationDbContext _context;
         private CartService _cartService;
+        private readonly IContactUserService _contactService;
 
-        public ContactController(ILogger<ContactController> logger, ApplicationDbContext context)
+        public ContactController(ILogger<ContactController> logger, ApplicationDbContext context, IContactUserService contactService)
         {
             _logger = logger;
             _context = context;
             _cartService = new CartService(context);
+            _contactService = contactService;
         }
         // GET: ContactController
         [Route("/contact")]
@@ -53,8 +56,7 @@ namespace Client.Controllers
         {
             try
             {
-                ContactUserService contactUserService = new ContactUserService();
-                await contactUserService.CreateContactUser(_context, Name, Email, Phone, Message);
+                await _contactService.CreateContactUser(Name, Email, Phone, Message);
 
                 return RedirectToAction(nameof(Index));
             }

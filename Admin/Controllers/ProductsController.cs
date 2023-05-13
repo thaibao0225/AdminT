@@ -1,15 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly IProductsService _productsService;
+        public ProductsController(IProductsService productsService)
+        {
+            _productsService = productsService;
+        }
+
         // GET: ProductsController
         [Route("/products")]
         public ActionResult Index()
         {
-            return View();
+            return View(_productsService.GetAllProduct());
         }
 
         // GET: ProductsController/Details/5
