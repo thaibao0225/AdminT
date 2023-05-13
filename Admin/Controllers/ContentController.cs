@@ -3,28 +3,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
-    public class AccountController : Controller
+    public class ContentController : Controller
     {
-        // GET: AccountController
-        [Route("/accounts")]
+        // GET: ContentController
+        [Route("/contents")]
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: AccountController/Details/5
+        // GET: ContentController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: AccountController/Create
+        // GET: ContentController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AccountController/Create
+        // POST: ContentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -39,13 +39,13 @@ namespace Admin.Controllers
             }
         }
 
-        // GET: AccountController/Edit/5
+        // GET: ContentController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: AccountController/Edit/5
+        // POST: ContentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -60,13 +60,13 @@ namespace Admin.Controllers
             }
         }
 
-        // GET: AccountController/Delete/5
+        // GET: ContentController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: AccountController/Delete/5
+        // POST: ContentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

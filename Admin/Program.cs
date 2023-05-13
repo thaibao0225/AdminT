@@ -1,4 +1,4 @@
-using Admin.Data;
+using Client.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

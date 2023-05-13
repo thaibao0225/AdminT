@@ -12,7 +12,7 @@ namespace Admin.Controllers
         {
             _logger = logger;
         }
-
+        [Route("/admin/")]
         public IActionResult Index()
         {
             return View();
