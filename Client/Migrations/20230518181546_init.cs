@@ -32,7 +32,8 @@ namespace Client.Migrations
                     cg_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cg_Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cg_Sale = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cg_Sex = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cg_Sex = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    idDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -459,31 +460,31 @@ namespace Client.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "cg_Id", "cg_Name", "cg_Sale", "cg_Sex", "cg_Type" },
+                columns: new[] { "cg_Id", "cg_Name", "cg_Sale", "cg_Sex", "cg_Type", "idDelete" },
                 values: new object[,]
                 {
-                    { "7f52fcbe-c7cd-412f-9fff-917c7996f875", "Clothes", "", "Women", "Hot Trend" },
-                    { "871b0d9f-9379-44ac-902a-5c21d59a6162", "Clothes", "", "Men", "Feature" },
-                    { "d3682bfe-dc67-4187-b5e6-f2e25634847e", "Clothes", "", "Women", "Best saler" }
+                    { "15e127c7-7d47-460b-b8bc-cfc5f213fe89", "Clothes", "", "Women", "Hot Trend", false },
+                    { "9f460416-03f5-4fe7-82e9-42092f31c13d", "Clothes", "", "Men", "Feature", false },
+                    { "b91d16b2-7d8d-4abd-929b-f8d685f57e25", "Clothes", "", "Women", "Best saler", false }
                 });
 
             migrationBuilder.InsertData(
                 table: "ContactSystems",
                 columns: new[] { "Contact_Id", "Contact_Address", "Contact_Description", "Contact_Email", "Contact_Phone", "isDelete" },
-                values: new object[] { "fbf2252a-1a4f-439c-8c48-e9822919ec01", "Address", "Description", "Email", "Phone", false });
+                values: new object[] { "c6625ed1-8d57-4c33-b655-cffaf7ab234a", "Address", "Description", "Email", "Phone", false });
 
             migrationBuilder.InsertData(
                 table: "ContactUsers",
                 columns: new[] { "cu_Id", "cu_Description", "cu_Email", "cu_Name", "cu_Phone" },
-                values: new object[] { "a91b1d5d-8e04-444e-9dda-2a1e4479dfa3", "Description", "Email", "FirstName", "Phone" });
+                values: new object[] { "85b20abf-d698-4aa7-93b3-23b49f3a77c5", "Description", "Email", "FirstName", "Phone" });
 
             migrationBuilder.InsertData(
                 table: "Coupons",
                 columns: new[] { "couponId", "couponCode", "couponPrice", "isDelete" },
                 values: new object[,]
                 {
-                    { "67ad47f3-e4a6-4c2f-aff5-aa81ed0011dd", "code50", 50, false },
-                    { "72d49f3d-7d6a-4ec4-a95b-5aa72d447f64", "code10", 10, false }
+                    { "33830e96-05dd-4a59-8323-d3aa287f3472", "code10", 10, false },
+                    { "6f198034-7cb5-4b03-b1d9-b903a5bcd67e", "code50", 50, false }
                 });
 
             migrationBuilder.InsertData(
@@ -491,8 +492,8 @@ namespace Client.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Discriminator", "Name", "NormalizedName", "isDelete" },
                 values: new object[,]
                 {
-                    { "360E601E-92F2-4F08-832B-604A21293258", "8627d8e1-3ee3-47fd-8307-d461d3e8a670", "Admin", "AppRole", "Admin", "admin", false },
-                    { "f49e4348-718f-43e3-b1f6-6dc89c5Bb4fd", "7d689fff-a681-4f9f-969d-bfeab7ca2dd4", "Staff", "AppRole", "Staff", "staff", false }
+                    { "360E601E-92F2-4F08-832B-604A21293258", "c2f3d933-513b-4d6b-a414-1dea26df196b", "Admin", "AppRole", "Admin", "admin", false },
+                    { "f49e4348-718f-43e3-b1f6-6dc89c5Bb4fd", "f70ac604-95e3-41d5-ac81-90545ac273ef", "Staff", "AppRole", "Staff", "staff", false }
                 });
 
             migrationBuilder.InsertData(
@@ -505,8 +506,8 @@ namespace Client.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "DoB", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "bill_Address1", "bill_Address2", "bill_City", "bill_CompanyName", "bill_Country", "bill_PhoneNumber", "bill_PostalCode", "bill_State", "isDelete" },
                 values: new object[,]
                 {
-                    { "DE544998-A3CC-4E12-ABB4-0642E57BD222", 0, "6969e86c-a5f8-46d5-b4a5-71800abe8c10", "AppUser", new DateTime(2020, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", true, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEHX036u548laIv7/tm0WOQyNZtM5PVDwdllf02m72M3d6X+4Sw5CDcYCqN/ZG5yeYw==", null, false, "1b2021e7-6af9-47b1-9f77-321ad500703e", false, "Admin", "", "", "", "", "", "", "", "", false },
-                    { "f49e4348-718f-43e3-b1f6-6dc89c5Bb5ff", 0, "c40563c5-61cc-49c1-a1cb-b7d4bcf8a369", "AppUser", new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff@gmail.com", true, "staff", "staff", false, null, "STAFF@GMAIL.COM", "STAFF@GMAIL.COM", "AQAAAAEAACcQAAAAEN7RMjyAaYJhOQytRvRJG30ymexz5Aif+kRfl+jWDHxdYd3kkT7nCCeWbyazAmhRKg==", null, false, "14e22cfd-e4bb-4767-89ae-60ec88997b2a", false, "Staff", "", "", "", "", "", "", "", "", false }
+                    { "DE544998-A3CC-4E12-ABB4-0642E57BD222", 0, "02c4ecdf-c5fe-46ee-bcb3-f2263063ccb5", "AppUser", new DateTime(2020, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@gmail.com", true, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEIxjcG2wGVbyfYTnTOSlwSjJRTyUD/2jxOjup7FZ6ZX5QcS/55JzoR/CtvLoCazcrw==", null, false, "3451e888-7001-4f4c-bc6a-ad3104ae9d88", false, "Admin", "", "", "", "", "", "", "", "", false },
+                    { "f49e4348-718f-43e3-b1f6-6dc89c5Bb5ff", 0, "552f25f8-f512-4113-842d-b25e2d90ffd2", "AppUser", new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "staff@gmail.com", true, "staff", "staff", false, null, "STAFF@GMAIL.COM", "STAFF@GMAIL.COM", "AQAAAAEAACcQAAAAEIrqPa7TiQZ3y08LlLQHSs8PzjYnQJGd8QtggqKUMNunZIDK/0G4ZZ24ET7FU9E/ug==", null, false, "45db9ea5-f309-42f7-a39b-314f4906be8d", false, "Staff", "", "", "", "", "", "", "", "", false }
                 });
 
             migrationBuilder.InsertData(
@@ -514,23 +515,23 @@ namespace Client.Migrations
                 columns: new[] { "pd_Id", "CategoryId", "isDelete", "pd_Description", "pd_Img1", "pd_Img2", "pd_Img3", "pd_Img4", "pd_Name", "pd_NameImg1", "pd_NameImg2", "pd_NameImg3", "pd_NameImg4", "pd_Price", "pd_Rate", "pd_ReducePrice", "pd_ShortDescription", "pd_WaitForConfirmation" },
                 values: new object[,]
                 {
-                    { "004ed78e-43cd-4e37-ac3c-6bb0df6dfb49", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Cotton T-Shirt", "/Client/img/product/product-3.jpg", "", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
-                    { "05424b82-3ea5-4848-9b57-030dce7c9c2e", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Metallic earrings", "/Client/img/trend/f-2.jpg", "/Client/img/trend/f-2.jpg", "", "", "Metallic earrings", "Metallic earrings", "Metallic earrings", "name img 3", "name img 4", 59, 5, 50000, "Metallic earrings", false },
-                    { "19421d95-2ce9-48b3-be30-57a7e6ff913e", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Flowy striped skirt", "/Client/img/product/product-2.jpg", "", "", "", "Flowy striped skirt", "Flowy striped skirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Flowy striped skirt", false },
-                    { "29aee6a1-1168-423d-81a5-0aa141a97525", "d3682bfe-dc67-4187-b5e6-f2e25634847e", false, "Water resistant backpack", "/Client/img/product/product-8.jpg", "", "", "", "Water resistant backpack", "Water resistant backpack", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Water resistant backpack", false },
-                    { "2c49a3c4-c42b-4ea6-958f-96a84e745d2a", "7f52fcbe-c7cd-412f-9fff-917c7996f875", false, "Pendant earrings", "/Client/img/trend/ht-2.jpg", "/Client/img/trend/ht-2.jpg", "", "", "Pendant earrings", "Pendant earrings", "Pendant earrings", "name img 3", "name img 4", 59, 5, 50000, "Pendant earrings", false },
-                    { "2f6c1518-bbe0-4b4d-87fa-77007098bd82", "d3682bfe-dc67-4187-b5e6-f2e25634847e", false, "Zip-pockets pebbled tote", "/Client/img/trend/bs-2.jpg", "/Client/img/trend/bs-2.jpg", "", "", "Zip-pockets pebbled tote", "Zip-pockets pebbled tote", "Zip-pockets pebbled tote", "name img 3", "name img 4", 59, 5, 50000, "Zip-pockets pebbled tote", false },
-                    { "4fc9b520-fd70-4ce3-9e4d-cb5ed162f62e", "d3682bfe-dc67-4187-b5e6-f2e25634847e", false, "Cotton T-Shirt", "/Client/img/trend/bs-1.jpg", "/Client/img/trend/bs-1.jpg", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "Cotton T-Shirt", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
-                    { "69cf899e-e833-45ab-90a4-bfb7e2c654b1", "d3682bfe-dc67-4187-b5e6-f2e25634847e", false, "Round leather bag", "/Client/img/trend/bs-3.jpg", "/Client/img/trend/bs-3.jpg", "", "", "Round leather bag", "Round leather bag", "Round leather bag", "name img 3", "name img 4", 59, 5, 50000, "Round leather bag", false },
-                    { "6ddcc5c0-c0a8-446f-a29f-5965f688b45f", "7f52fcbe-c7cd-412f-9fff-917c7996f875", false, "Tropical Kimono", "/Client/img/product/product-6.jpg", "", "", "", "Tropical Kimono", "Tropical Kimono", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Tropical Kimono", false },
-                    { "a3a9a70a-8af4-4a58-b649-c176669a52c7", "7f52fcbe-c7cd-412f-9fff-917c7996f875", false, "Fit micro corduroy shirt", "/Client/img/product/product-5.jpg", "", "", "", "Fit micro corduroy shirt", "Fit micro corduroy shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Fit micro corduroy shirt", false },
-                    { "c4d12225-b011-403a-af3d-5605a4fe881d", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Flap cross-body bag", "/Client/img/trend/f-3.jpg", "/Client/img/trend/f-3.jpg", "", "", "Flap cross-body bag", "Flap cross-body bag", "Flap cross-body bag", "name img 3", "name img 4", 59, 5, 50000, "Flap cross-body bag", false },
-                    { "c997c98f-0eb1-425e-b922-b9b904f19c1a", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Bow wrap skirt", "/Client/img/trend/f-1.jpg", "/Client/img/trend/f-1.jpg", "", "", "Bow wrap skirt", "Bow wrap skirt", "Bow wrap skirt", "name img 3", "name img 4", 59, 5, 50000, "Bow wrap skirt", false },
-                    { "d5f569c6-b12a-4dc2-b20e-bdb7ec8fb8ff", "7f52fcbe-c7cd-412f-9fff-917c7996f875", false, "Cotton T-Shirt", "/Client/img/trend/ht-3.jpg", "/Client/img/trend/ht-3.jpg", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "Cotton T-Shirt", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
-                    { "de532dcc-1439-4fb8-9989-04767b728882", "7f52fcbe-c7cd-412f-9fff-917c7996f875", false, "Chain bucket bag", "/Client/img/trend/ht-1.jpg", "/Client/img/trend/ht-1.jpg", "", "", "Chain bucket bag", "Chain bucket bag", "Chain bucket bag", "name img 3", "name img 4", 59, 5, 50000, "Chain bucket bag", false },
-                    { "e3cdb75d-b9c2-4ea8-be6e-75c793cf5ec2", "d3682bfe-dc67-4187-b5e6-f2e25634847e", false, "Contrasting sunglasses", "/Client/img/product/product-7.jpg", "", "", "", "Contrasting sunglasses", "Contrasting sunglasses", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Contrasting sunglasses", false },
-                    { "e6bc4c70-3666-47ac-b02a-acf2b7f8c0b4", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Buttons tweed blazer", "/Client/img/product/product-1.jpg", "", "", "", "Buttons tweed blazer", "Buttons tweed blazer", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Buttons tweed blazer", false },
-                    { "f07cd142-dd13-4eee-bc58-c8fa06fcd865", "871b0d9f-9379-44ac-902a-5c21d59a6162", false, "Slim striped pocket shirt", "/Client/img/product/product-4.jpg", "", "", "", "Slim striped pocket shirt", "Slim striped pocket shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Slim striped pocket shirt", false }
+                    { "023f030b-4b28-4b1e-93f4-ae82c807765b", "15e127c7-7d47-460b-b8bc-cfc5f213fe89", false, "Cotton T-Shirt", "/Client/img/trend/ht-3.jpg", "/Client/img/trend/ht-3.jpg", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "Cotton T-Shirt", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
+                    { "0dd8493b-f7c7-40ee-a86a-8b5d0a3d9cfc", "15e127c7-7d47-460b-b8bc-cfc5f213fe89", false, "Fit micro corduroy shirt", "/Client/img/product/product-5.jpg", "", "", "", "Fit micro corduroy shirt", "Fit micro corduroy shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Fit micro corduroy shirt", false },
+                    { "34336e7d-4e51-403f-ad17-af2188218551", "b91d16b2-7d8d-4abd-929b-f8d685f57e25", false, "Water resistant backpack", "/Client/img/product/product-8.jpg", "", "", "", "Water resistant backpack", "Water resistant backpack", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Water resistant backpack", false },
+                    { "35034c15-d239-45e8-a930-b11216b42eee", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Flowy striped skirt", "/Client/img/product/product-2.jpg", "", "", "", "Flowy striped skirt", "Flowy striped skirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Flowy striped skirt", false },
+                    { "38ff5c36-fa60-436e-bf37-3444e2d5e9b0", "b91d16b2-7d8d-4abd-929b-f8d685f57e25", false, "Zip-pockets pebbled tote", "/Client/img/trend/bs-2.jpg", "/Client/img/trend/bs-2.jpg", "", "", "Zip-pockets pebbled tote", "Zip-pockets pebbled tote", "Zip-pockets pebbled tote", "name img 3", "name img 4", 59, 5, 50000, "Zip-pockets pebbled tote", false },
+                    { "4bdef2e1-b1d5-4976-8422-1eb7e43ca813", "15e127c7-7d47-460b-b8bc-cfc5f213fe89", false, "Tropical Kimono", "/Client/img/product/product-6.jpg", "", "", "", "Tropical Kimono", "Tropical Kimono", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Tropical Kimono", false },
+                    { "5e486b17-a096-43aa-aa03-d48499bdb183", "b91d16b2-7d8d-4abd-929b-f8d685f57e25", false, "Contrasting sunglasses", "/Client/img/product/product-7.jpg", "", "", "", "Contrasting sunglasses", "Contrasting sunglasses", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Contrasting sunglasses", false },
+                    { "831d2795-734c-4a74-90fe-9735d2c4f5e0", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Cotton T-Shirt", "/Client/img/product/product-3.jpg", "", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
+                    { "9446e9e3-1855-4578-8186-c1b5fe790479", "15e127c7-7d47-460b-b8bc-cfc5f213fe89", false, "Pendant earrings", "/Client/img/trend/ht-2.jpg", "/Client/img/trend/ht-2.jpg", "", "", "Pendant earrings", "Pendant earrings", "Pendant earrings", "name img 3", "name img 4", 59, 5, 50000, "Pendant earrings", false },
+                    { "a3fae67f-819d-4dc8-b286-6c7cf0f5d529", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Bow wrap skirt", "/Client/img/trend/f-1.jpg", "/Client/img/trend/f-1.jpg", "", "", "Bow wrap skirt", "Bow wrap skirt", "Bow wrap skirt", "name img 3", "name img 4", 59, 5, 50000, "Bow wrap skirt", false },
+                    { "cca4ade0-877d-41d2-a0e7-19ec59a90b6f", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Metallic earrings", "/Client/img/trend/f-2.jpg", "/Client/img/trend/f-2.jpg", "", "", "Metallic earrings", "Metallic earrings", "Metallic earrings", "name img 3", "name img 4", 59, 5, 50000, "Metallic earrings", false },
+                    { "d9dfab8e-1011-4207-ba2a-e324506e238b", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Slim striped pocket shirt", "/Client/img/product/product-4.jpg", "", "", "", "Slim striped pocket shirt", "Slim striped pocket shirt", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Slim striped pocket shirt", false },
+                    { "e510dfdd-f192-489a-b260-636bbf2081c2", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Flap cross-body bag", "/Client/img/trend/f-3.jpg", "/Client/img/trend/f-3.jpg", "", "", "Flap cross-body bag", "Flap cross-body bag", "Flap cross-body bag", "name img 3", "name img 4", 59, 5, 50000, "Flap cross-body bag", false },
+                    { "e88756da-7c28-40b1-a189-84fc26b2ef93", "15e127c7-7d47-460b-b8bc-cfc5f213fe89", false, "Chain bucket bag", "/Client/img/trend/ht-1.jpg", "/Client/img/trend/ht-1.jpg", "", "", "Chain bucket bag", "Chain bucket bag", "Chain bucket bag", "name img 3", "name img 4", 59, 5, 50000, "Chain bucket bag", false },
+                    { "e9b4fac1-2755-4089-8fc8-0327c0c3b69b", "b91d16b2-7d8d-4abd-929b-f8d685f57e25", false, "Round leather bag", "/Client/img/trend/bs-3.jpg", "/Client/img/trend/bs-3.jpg", "", "", "Round leather bag", "Round leather bag", "Round leather bag", "name img 3", "name img 4", 59, 5, 50000, "Round leather bag", false },
+                    { "ee3e149f-88ab-4fac-bb71-18b21690980c", "b91d16b2-7d8d-4abd-929b-f8d685f57e25", false, "Cotton T-Shirt", "/Client/img/trend/bs-1.jpg", "/Client/img/trend/bs-1.jpg", "", "", "Cotton T-Shirt", "Cotton T-Shirt", "Cotton T-Shirt", "name img 3", "name img 4", 59, 5, 50000, "Cotton T-Shirt", false },
+                    { "f02eefd0-21e1-47ce-97bf-ffd78e5e4bde", "9f460416-03f5-4fe7-82e9-42092f31c13d", false, "Buttons tweed blazer", "/Client/img/product/product-1.jpg", "", "", "", "Buttons tweed blazer", "Buttons tweed blazer", "name img 2", "name img 3", "name img 4", 59, 5, 50000, "Buttons tweed blazer", false }
                 });
 
             migrationBuilder.InsertData(

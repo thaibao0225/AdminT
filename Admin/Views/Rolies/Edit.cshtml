@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Client.Models.RoleModel>
+﻿@model Client.Models.RoleModel
 
 @{
-    int index = 0;
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Content wrapper -->
@@ -15,38 +16,31 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col"></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    index++;
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>@item.Name</td>
-                                        <td>
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                            |
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                            |
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                        </td>
+                        <h1>Edit</h1>
 
-                                    </tr>
-                                }
-                                
-                                
-                            </tbody>
-                        </table>
+                        <h4>AppRole</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Id" />
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
                     </div>
                     <!-- /Account -->
                 </div>
@@ -85,3 +79,9 @@
     <div class="content-backdrop fade"></div>
 </div>
 <!-- Content wrapper -->
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

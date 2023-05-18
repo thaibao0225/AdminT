@@ -15,6 +15,9 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
+                        <p>
+                            <a asp-action="Create">Create New</a>
+                        </p>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -33,11 +36,11 @@
                                         <th scope="row">@index</th>
                                         <td>@item.CategoryName</td>
                                         <td>
-                                            <a>Details</a>
+                                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
                                             |
-                                            <a>Edit</a>
+                                            <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a>
                                             |
-                                            <a>Delte</a>
+                                            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
                                         </td>
                                     </tr>
                                 }

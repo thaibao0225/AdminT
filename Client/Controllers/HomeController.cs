@@ -5,6 +5,7 @@ using Client.Service;
 using Client.Data;
 using Client.Models.Static;
 using System.Security.Claims;
+using Client.Service.Interface;
 
 namespace Client.Controllers
 {
@@ -14,14 +15,17 @@ namespace Client.Controllers
         private readonly ApplicationDbContext _context;
         private ProductsService _products;
         private CartService _cartService;
+        private ICategoriesService _categoriesService;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, ICategoriesService categoriesService)
         {
             _logger = logger;
             _context = context;
             _products = new ProductsService(context);
             _cartService = new CartService(context);
-            
+            _categoriesService = categoriesService;
+
+
         }
 
         public async Task<IActionResult> Index()
@@ -33,7 +37,7 @@ namespace Client.Controllers
             ViewBag.ProductBestSaler = _products.GetProductsInType(CategoryCommon.BESTSALER, 3);
             ViewBag.ProductFeature = _products.GetProductsInType(CategoryCommon.FEATURE, 3);
 
-            ViewBag.Categories = _products.GetCategories();
+            ViewBag.Categories = _categoriesService.GetCategories();
 
             ViewBag.CountProductInCart = 0;
             if (userId != null)

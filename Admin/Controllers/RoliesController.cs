@@ -20,9 +20,10 @@ namespace Admin.Controllers
         }
 
         // GET: RoliesController/Details/5
-        public ActionResult Details(int id)
+        [Route("/rolies/Details")]
+        public ActionResult Details(string id)
         {
-            return View();
+            return View(_roleService.GetRoleById(id));
         }
 
         // GET: RoliesController/Create
@@ -47,15 +48,17 @@ namespace Admin.Controllers
         }
 
         // GET: RoliesController/Edit/5
-        public ActionResult Edit(int id)
+        [Route("/rolies/Edit")]
+        public ActionResult Edit(string id)
         {
-            return View();
+            return View(_roleService.GetRoleById(id));
         }
 
         // POST: RoliesController/Edit/5
+        [Route("/rolies/Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, IFormCollection collection)
         {
             try
             {
@@ -68,15 +71,17 @@ namespace Admin.Controllers
         }
 
         // GET: RoliesController/Delete/5
-        public ActionResult Delete(int id)
+        [Route("/rolies/Delete")]
+        public ActionResult Delete(string id)
         {
-            return View();
+            return View(_roleService.GetRoleById(id));
         }
 
         // POST: RoliesController/Delete/5
+        [Route("/rolies/Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, IFormCollection collection)
         {
             try
             {

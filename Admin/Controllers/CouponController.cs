@@ -4,37 +4,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
-    public class ProductsController : Controller
+    public class CouponController : Controller
     {
-        private readonly IProductsService _productsService;
-        public ProductsController(IProductsService productsService)
+        private readonly ICouponServcice _couponServcice;
+        public CouponController(ICouponServcice couponServcice)
         {
-            _productsService = productsService;
+            _couponServcice = couponServcice;
         }
 
-        // GET: ProductsController
-        [Route("/products")]
+        // GET: CouponController
+        [Route("/coupons")]
         public ActionResult Index()
         {
-            return View(_productsService.GetAllProduct());
+            return View(_couponServcice.GetAllCoupon());
         }
 
-        // GET: ProductsController/Details/5
-        [Route("/products/detail")]
+        // GET: CouponController/Details/5
+        [Route("/coupons/detail")]
         public ActionResult Details(string id)
         {
-            return View(_productsService.GetProductDetail(id));
+            return View();
         }
 
-        // GET: ProductsController/Create
-        [Route("/products/create")]
+        // GET: CouponController/Create
+        [Route("/coupons/create")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductsController/Create
-        [Route("/products/create")]
+        // POST: CouponController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -49,15 +48,15 @@ namespace Admin.Controllers
             }
         }
 
-        // GET: ProductsController/Edit/5
-        [Route("/products/edit")]
+        // GET: CouponController/Edit/5
+        [Route("/coupons/edit")]
         public ActionResult Edit(string id)
         {
-            return View(_productsService.GetProductDetail(id));
+            return View();
         }
 
-        // POST: ProductsController/Edit/5
-        [Route("/products/edit")]
+        // POST: CouponController/Edit/5
+        [Route("/coupons/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(string id, IFormCollection collection)
@@ -72,15 +71,15 @@ namespace Admin.Controllers
             }
         }
 
-        // GET: ProductsController/Delete/5
-        [Route("/products/delete")]
+        // GET: CouponController/Delete/5
+        [Route("/coupons/delete")]
         public ActionResult Delete(string id)
         {
-            return View(_productsService.GetProductDetail(id));
+            return View();
         }
 
-        // POST: ProductsController/Delete/5
-        [Route("/products/delete")]
+        // POST: CouponController/Delete/5
+        [Route("/coupons/delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id, IFormCollection collection)

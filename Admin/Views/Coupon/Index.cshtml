@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Client.Models.ContactModel>
+﻿@model IEnumerable<Client.Models.CouponModel>
+
 @{
-    int index = 0;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Content wrapper -->
@@ -14,42 +16,40 @@
             <div class="col-md-12">
                 <div class="card mb-4">
                     <div class="card-body">
+                        <p>
+                            <a asp-action="Create">Create New</a>
+                        </p>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col"></th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CouponCode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CouponPrice)
+                                    </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    index++;
                                     <tr>
-                                        <th scope="row">@index</th>
-                                        <td>@item.cu_Name</td>
-                                        <td>@item.cu_Email</td>
-                                        <td>@item.cu_Phone</td>
-                                        <td>@item.cu_Description</td>
                                         <td>
-                                            <a asp-action="Details" asp-route-id="@item.cu_Id">Details</a>
-                                            |
-                                            <a asp-action="Edit" asp-route-id="@item.cu_Id">Edit</a>
-                                            |
-                                            <a asp-action="Delete" asp-route-id="@item.cu_Id">Delete</a>
+                                            @Html.DisplayFor(modelItem => item.CouponCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CouponPrice)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.CouponId">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.CouponId">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.CouponId">Delete</a>
                                         </td>
                                     </tr>
                                 }
-                               
-                               
                             </tbody>
                         </table>
-
-
                     </div>
                     <!-- /Account -->
                 </div>
@@ -88,3 +88,6 @@
     <div class="content-backdrop fade"></div>
 </div>
 <!-- Content wrapper -->
+
+
+

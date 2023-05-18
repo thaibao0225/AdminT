@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IContactUserService, ContactUserService>();
+builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 
 var app = builder.Build();
 

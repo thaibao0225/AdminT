@@ -18,14 +18,17 @@ namespace Client.Service
         {
             var query = _context.Coupons.Where(x => x.isDelete == false);
             List<CouponModel> coupons = new List<CouponModel>();
-            CouponModel couponModel = new CouponModel();
+            
             foreach (var item in query)
             {
+                CouponModel couponModel = new CouponModel();
                 couponModel.CouponId = item.couponId;
                 couponModel.CouponCode = item.couponCode;
                 couponModel.CouponPrice = item.couponPrice;
+                coupons.Add(couponModel);
+
             }
-            return new List<CouponModel>();
+            return coupons;
         }
 
         public async Task<bool> SetCoupon(string couponCode, int couponPrice = 0)

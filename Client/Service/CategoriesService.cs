@@ -1,5 +1,4 @@
-﻿using AspNetCore;
-using Client.Data;
+﻿using Client.Data;
 using Client.Entites;
 using Client.Models;
 using Client.Service.Interface;
@@ -21,8 +20,9 @@ namespace Client.Service
             Categories categories = new Categories();
             categories.cg_Id = Guid.NewGuid().ToString();
             categories.cg_Name = categoriesModel.CategoryName;
-            categories.cg_Type = categoriesModel.CategoryType;
-            categories.cg_Sex = categoriesModel.CategorySex;
+            categories.cg_Sale = categoriesModel.CategoryName;
+            categories.cg_Type = categoriesModel.CategoryName;
+            categories.cg_Sex = categoriesModel.CategoryName;
 
             await _context.Categories.AddAsync(categories);
             await _context.SaveChangesAsync();

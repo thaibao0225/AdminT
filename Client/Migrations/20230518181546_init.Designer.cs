@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Client.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230518135213_init")]
+    [Migration("20230518181546_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,6 +192,9 @@ namespace Client.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("idDelete")
+                        .HasColumnType("bit");
+
                     b.HasKey("cg_Id");
 
                     b.ToTable("Categories", (string)null);
@@ -199,27 +202,30 @@ namespace Client.Migrations
                     b.HasData(
                         new
                         {
-                            cg_Id = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            cg_Id = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             cg_Name = "Clothes",
                             cg_Sale = "",
                             cg_Sex = "Women",
-                            cg_Type = "Hot Trend"
+                            cg_Type = "Hot Trend",
+                            idDelete = false
                         },
                         new
                         {
-                            cg_Id = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            cg_Id = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             cg_Name = "Clothes",
                             cg_Sale = "",
                             cg_Sex = "Women",
-                            cg_Type = "Best saler"
+                            cg_Type = "Best saler",
+                            idDelete = false
                         },
                         new
                         {
-                            cg_Id = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            cg_Id = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             cg_Name = "Clothes",
                             cg_Sale = "",
                             cg_Sex = "Men",
-                            cg_Type = "Feature"
+                            cg_Type = "Feature",
+                            idDelete = false
                         });
                 });
 
@@ -254,7 +260,7 @@ namespace Client.Migrations
                     b.HasData(
                         new
                         {
-                            Contact_Id = "fbf2252a-1a4f-439c-8c48-e9822919ec01",
+                            Contact_Id = "c6625ed1-8d57-4c33-b655-cffaf7ab234a",
                             Contact_Address = "Address",
                             Contact_Description = "Description",
                             Contact_Email = "Email",
@@ -291,7 +297,7 @@ namespace Client.Migrations
                     b.HasData(
                         new
                         {
-                            cu_Id = "a91b1d5d-8e04-444e-9dda-2a1e4479dfa3",
+                            cu_Id = "85b20abf-d698-4aa7-93b3-23b49f3a77c5",
                             cu_Description = "Description",
                             cu_Email = "Email",
                             cu_Name = "FirstName",
@@ -321,14 +327,14 @@ namespace Client.Migrations
                     b.HasData(
                         new
                         {
-                            couponId = "72d49f3d-7d6a-4ec4-a95b-5aa72d447f64",
+                            couponId = "33830e96-05dd-4a59-8323-d3aa287f3472",
                             couponCode = "code10",
                             couponPrice = 10,
                             isDelete = false
                         },
                         new
                         {
-                            couponId = "67ad47f3-e4a6-4c2f-aff5-aa81ed0011dd",
+                            couponId = "6f198034-7cb5-4b03-b1d9-b903a5bcd67e",
                             couponCode = "code50",
                             couponPrice = 50,
                             isDelete = false
@@ -510,8 +516,8 @@ namespace Client.Migrations
                     b.HasData(
                         new
                         {
-                            pd_Id = "e6bc4c70-3666-47ac-b02a-acf2b7f8c0b4",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "f02eefd0-21e1-47ce-97bf-ffd78e5e4bde",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Buttons tweed blazer",
                             pd_Img1 = "/Client/img/product/product-1.jpg",
@@ -531,8 +537,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "19421d95-2ce9-48b3-be30-57a7e6ff913e",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "35034c15-d239-45e8-a930-b11216b42eee",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Flowy striped skirt",
                             pd_Img1 = "/Client/img/product/product-2.jpg",
@@ -552,8 +558,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "004ed78e-43cd-4e37-ac3c-6bb0df6dfb49",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "831d2795-734c-4a74-90fe-9735d2c4f5e0",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Cotton T-Shirt",
                             pd_Img1 = "/Client/img/product/product-3.jpg",
@@ -573,8 +579,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "f07cd142-dd13-4eee-bc58-c8fa06fcd865",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "d9dfab8e-1011-4207-ba2a-e324506e238b",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Slim striped pocket shirt",
                             pd_Img1 = "/Client/img/product/product-4.jpg",
@@ -594,8 +600,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "a3a9a70a-8af4-4a58-b649-c176669a52c7",
-                            CategoryId = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            pd_Id = "0dd8493b-f7c7-40ee-a86a-8b5d0a3d9cfc",
+                            CategoryId = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             isDelete = false,
                             pd_Description = "Fit micro corduroy shirt",
                             pd_Img1 = "/Client/img/product/product-5.jpg",
@@ -615,8 +621,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "6ddcc5c0-c0a8-446f-a29f-5965f688b45f",
-                            CategoryId = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            pd_Id = "4bdef2e1-b1d5-4976-8422-1eb7e43ca813",
+                            CategoryId = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             isDelete = false,
                             pd_Description = "Tropical Kimono",
                             pd_Img1 = "/Client/img/product/product-6.jpg",
@@ -636,8 +642,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "e3cdb75d-b9c2-4ea8-be6e-75c793cf5ec2",
-                            CategoryId = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            pd_Id = "5e486b17-a096-43aa-aa03-d48499bdb183",
+                            CategoryId = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             isDelete = false,
                             pd_Description = "Contrasting sunglasses",
                             pd_Img1 = "/Client/img/product/product-7.jpg",
@@ -657,8 +663,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "29aee6a1-1168-423d-81a5-0aa141a97525",
-                            CategoryId = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            pd_Id = "34336e7d-4e51-403f-ad17-af2188218551",
+                            CategoryId = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             isDelete = false,
                             pd_Description = "Water resistant backpack",
                             pd_Img1 = "/Client/img/product/product-8.jpg",
@@ -678,8 +684,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "de532dcc-1439-4fb8-9989-04767b728882",
-                            CategoryId = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            pd_Id = "e88756da-7c28-40b1-a189-84fc26b2ef93",
+                            CategoryId = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             isDelete = false,
                             pd_Description = "Chain bucket bag",
                             pd_Img1 = "/Client/img/trend/ht-1.jpg",
@@ -699,8 +705,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "2c49a3c4-c42b-4ea6-958f-96a84e745d2a",
-                            CategoryId = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            pd_Id = "9446e9e3-1855-4578-8186-c1b5fe790479",
+                            CategoryId = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             isDelete = false,
                             pd_Description = "Pendant earrings",
                             pd_Img1 = "/Client/img/trend/ht-2.jpg",
@@ -720,8 +726,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "d5f569c6-b12a-4dc2-b20e-bdb7ec8fb8ff",
-                            CategoryId = "7f52fcbe-c7cd-412f-9fff-917c7996f875",
+                            pd_Id = "023f030b-4b28-4b1e-93f4-ae82c807765b",
+                            CategoryId = "15e127c7-7d47-460b-b8bc-cfc5f213fe89",
                             isDelete = false,
                             pd_Description = "Cotton T-Shirt",
                             pd_Img1 = "/Client/img/trend/ht-3.jpg",
@@ -741,8 +747,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "4fc9b520-fd70-4ce3-9e4d-cb5ed162f62e",
-                            CategoryId = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            pd_Id = "ee3e149f-88ab-4fac-bb71-18b21690980c",
+                            CategoryId = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             isDelete = false,
                             pd_Description = "Cotton T-Shirt",
                             pd_Img1 = "/Client/img/trend/bs-1.jpg",
@@ -762,8 +768,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "2f6c1518-bbe0-4b4d-87fa-77007098bd82",
-                            CategoryId = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            pd_Id = "38ff5c36-fa60-436e-bf37-3444e2d5e9b0",
+                            CategoryId = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             isDelete = false,
                             pd_Description = "Zip-pockets pebbled tote",
                             pd_Img1 = "/Client/img/trend/bs-2.jpg",
@@ -783,8 +789,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "69cf899e-e833-45ab-90a4-bfb7e2c654b1",
-                            CategoryId = "d3682bfe-dc67-4187-b5e6-f2e25634847e",
+                            pd_Id = "e9b4fac1-2755-4089-8fc8-0327c0c3b69b",
+                            CategoryId = "b91d16b2-7d8d-4abd-929b-f8d685f57e25",
                             isDelete = false,
                             pd_Description = "Round leather bag",
                             pd_Img1 = "/Client/img/trend/bs-3.jpg",
@@ -804,8 +810,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "c997c98f-0eb1-425e-b922-b9b904f19c1a",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "a3fae67f-819d-4dc8-b286-6c7cf0f5d529",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Bow wrap skirt",
                             pd_Img1 = "/Client/img/trend/f-1.jpg",
@@ -825,8 +831,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "05424b82-3ea5-4848-9b57-030dce7c9c2e",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "cca4ade0-877d-41d2-a0e7-19ec59a90b6f",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Metallic earrings",
                             pd_Img1 = "/Client/img/trend/f-2.jpg",
@@ -846,8 +852,8 @@ namespace Client.Migrations
                         },
                         new
                         {
-                            pd_Id = "c4d12225-b011-403a-af3d-5605a4fe881d",
-                            CategoryId = "871b0d9f-9379-44ac-902a-5c21d59a6162",
+                            pd_Id = "e510dfdd-f192-489a-b260-636bbf2081c2",
+                            CategoryId = "9f460416-03f5-4fe7-82e9-42092f31c13d",
                             isDelete = false,
                             pd_Description = "Flap cross-body bag",
                             pd_Img1 = "/Client/img/trend/f-3.jpg",
@@ -1155,7 +1161,7 @@ namespace Client.Migrations
                         new
                         {
                             Id = "f49e4348-718f-43e3-b1f6-6dc89c5Bb4fd",
-                            ConcurrencyStamp = "7d689fff-a681-4f9f-969d-bfeab7ca2dd4",
+                            ConcurrencyStamp = "f70ac604-95e3-41d5-ac81-90545ac273ef",
                             Name = "Staff",
                             NormalizedName = "staff",
                             Description = "Staff",
@@ -1164,7 +1170,7 @@ namespace Client.Migrations
                         new
                         {
                             Id = "360E601E-92F2-4F08-832B-604A21293258",
-                            ConcurrencyStamp = "8627d8e1-3ee3-47fd-8307-d461d3e8a670",
+                            ConcurrencyStamp = "c2f3d933-513b-4d6b-a414-1dea26df196b",
                             Name = "Admin",
                             NormalizedName = "admin",
                             Description = "Admin",
@@ -1231,15 +1237,15 @@ namespace Client.Migrations
                         {
                             Id = "DE544998-A3CC-4E12-ABB4-0642E57BD222",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6969e86c-a5f8-46d5-b4a5-71800abe8c10",
+                            ConcurrencyStamp = "02c4ecdf-c5fe-46ee-bcb3-f2263063ccb5",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHX036u548laIv7/tm0WOQyNZtM5PVDwdllf02m72M3d6X+4Sw5CDcYCqN/ZG5yeYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIxjcG2wGVbyfYTnTOSlwSjJRTyUD/2jxOjup7FZ6ZX5QcS/55JzoR/CtvLoCazcrw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1b2021e7-6af9-47b1-9f77-321ad500703e",
+                            SecurityStamp = "3451e888-7001-4f4c-bc6a-ad3104ae9d88",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             DoB = new DateTime(2020, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1259,15 +1265,15 @@ namespace Client.Migrations
                         {
                             Id = "f49e4348-718f-43e3-b1f6-6dc89c5Bb5ff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c40563c5-61cc-49c1-a1cb-b7d4bcf8a369",
+                            ConcurrencyStamp = "552f25f8-f512-4113-842d-b25e2d90ffd2",
                             Email = "staff@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "STAFF@GMAIL.COM",
                             NormalizedUserName = "STAFF@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN7RMjyAaYJhOQytRvRJG30ymexz5Aif+kRfl+jWDHxdYd3kkT7nCCeWbyazAmhRKg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIrqPa7TiQZ3y08LlLQHSs8PzjYnQJGd8QtggqKUMNunZIDK/0G4ZZ24ET7FU9E/ug==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "14e22cfd-e4bb-4767-89ae-60ec88997b2a",
+                            SecurityStamp = "45db9ea5-f309-42f7-a39b-314f4906be8d",
                             TwoFactorEnabled = false,
                             UserName = "Staff",
                             DoB = new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),

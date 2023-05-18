@@ -1,0 +1,167 @@
+﻿@model Client.Models.ProductsModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h1>Edit</h1>
+
+                        <h4>Products</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="pd_Id" />
+                                    <div class="form-group">
+                                        <label asp-for="pd_Name" class="control-label"></label>
+                                        <input asp-for="pd_Name" class="form-control" />
+                                        <span asp-validation-for="pd_Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Description" class="control-label"></label>
+                                        <input asp-for="pd_Description" class="form-control" />
+                                        <span asp-validation-for="pd_Description" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Price" class="control-label"></label>
+                                        <input asp-for="pd_Price" class="form-control" />
+                                        <span asp-validation-for="pd_Price" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_ReducePrice" class="control-label"></label>
+                                        <input asp-for="pd_ReducePrice" class="form-control" />
+                                        <span asp-validation-for="pd_ReducePrice" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_NameImg1" class="control-label"></label>
+                                        <input asp-for="pd_NameImg1" class="form-control" />
+                                        <span asp-validation-for="pd_NameImg1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_NameImg2" class="control-label"></label>
+                                        <input asp-for="pd_NameImg2" class="form-control" />
+                                        <span asp-validation-for="pd_NameImg2" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_NameImg3" class="control-label"></label>
+                                        <input asp-for="pd_NameImg3" class="form-control" />
+                                        <span asp-validation-for="pd_NameImg3" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_NameImg4" class="control-label"></label>
+                                        <input asp-for="pd_NameImg4" class="form-control" />
+                                        <span asp-validation-for="pd_NameImg4" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Img1" class="control-label"></label>
+                                        <input asp-for="pd_Img1" class="form-control" />
+                                        <span asp-validation-for="pd_Img1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Img2" class="control-label"></label>
+                                        <input asp-for="pd_Img2" class="form-control" />
+                                        <span asp-validation-for="pd_Img2" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Img3" class="control-label"></label>
+                                        <input asp-for="pd_Img3" class="form-control" />
+                                        <span asp-validation-for="pd_Img3" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Img4" class="control-label"></label>
+                                        <input asp-for="pd_Img4" class="form-control" />
+                                        <span asp-validation-for="pd_Img4" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_Rate" class="control-label"></label>
+                                        <input asp-for="pd_Rate" class="form-control" />
+                                        <span asp-validation-for="pd_Rate" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="pd_ShortDescription" class="control-label"></label>
+                                        <input asp-for="pd_ShortDescription" class="form-control" />
+                                        <span asp-validation-for="pd_ShortDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" asp-for="pd_WaitForConfirmation" /> @Html.DisplayNameFor(model => model.pd_WaitForConfirmation)
+                                        </label>
+                                    </div>
+                                    <div class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" asp-for="isDelete" /> @Html.DisplayNameFor(model => model.isDelete)
+                                        </label>
+                                    </div>
+                                    @*            <div class="form-group">
+                                    <label asp-for="CategoryId" class="control-label"></label>
+                                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                    </div>*@
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /Account -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- / Content -->
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+            <div class="mb-2 mb-md-0">
+                ©
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                , made with ❤️ by
+                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+            </div>
+            <div>
+                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                   target="_blank"
+                   class="footer-link me-4">Documentation</a>
+
+                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                   target="_blank"
+                   class="footer-link me-4">Support</a>
+            </div>
+        </div>
+    </footer>
+    <!-- / Footer -->
+
+    <div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

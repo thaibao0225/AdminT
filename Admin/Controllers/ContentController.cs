@@ -20,7 +20,8 @@ namespace Admin.Controllers
         }
 
         // GET: ContentController/Details/5
-        public ActionResult Details(int id)
+        [Route("/contents/detail")]
+        public ActionResult Details(string id)
         {
             return View();
         }

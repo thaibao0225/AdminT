@@ -31,11 +31,11 @@
                                         <th scope="row">@index</th>
                                         <td>@item.pd_Name</td>
                                         <td>
-                                            <a>Details</a>
+                                            <a asp-action="Details" asp-route-id="@item.pd_Id">Details</a>
                                             |
-                                            <a>Edit</a>
+                                            <a asp-action="Edit" asp-route-id="@item.pd_Id">Edit</a>
                                             |
-                                            <a>Delte</a>
+                                            <a asp-action="Delete" asp-route-id="@item.pd_Id">Delete</a>
                                         </td>
                                     </tr>
                                 }
