@@ -1,4 +1,5 @@
 ﻿using Client.Data;
+using Client.Entites;
 using Client.Models;
 using Client.Service.Interface;
 
@@ -12,7 +13,18 @@ namespace Client.Service
             _context = context;
         }
 
+        public async Task<bool> createProduct(ProductsModel productsModel)
+        {
+            Products products = new Products();
+            products.pd_Id = Guid.NewGuid().ToString();
+            products.pd_Name = productsModel.pd_Name;
+            products.pd_Price = productsModel.pd_Price;
 
+            await _context.Products.AddAsync(products);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
         public List<ProductsModel> GetAllProduct()
         {
             var products = from p in _context.Products
@@ -193,25 +205,40 @@ namespace Client.Service
             return productsModel.ToList();
         }
 
-        public List<CategoriesModel> GetCategories(int size = 0)
+        public async Task<bool> EditProduct(ProductsModel productsModel)
         {
-            var categories = from c in _context.Categories 
-                             where c.idDelete == false
-                             select c;
-
-            if (size != 0)
+            if(productsModel != null)
             {
-                categories = categories.Take(size);
+                var queryProduct = _context.Products.FirstOrDefault(x => x.pd_Id == productsModel.pd_Id && x.isDelete == false);
+
+                if(queryProduct != null)
+                {
+                    queryProduct.pd_Name = productsModel.pd_Name;
+
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
             }
 
-            var categoriesModel = categories.Select(x => new CategoriesModel()
-            {
-                CategorySex = x.cg_Sex
-            });
-
-
-
-            return categoriesModel.Distinct().ToList();
+            return false;
         }
+
+        public async Task<bool> DeleteProduct(string id)
+        {
+            if(id != "")
+            {
+                var queryProduct = _context.Products.FirstOrDefault(x => x.pd_Id == id && x.isDelete == false);
+                if (queryProduct != null)
+                {
+                    queryProduct.isDelete = true;
+
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Client.Data;
+using Client.Entites;
 using Client.Models;
 using Client.Service.Interface;
 
@@ -11,6 +12,20 @@ namespace Client.Service
         {
 
             _context = context;
+        }
+        
+        public async Task<bool> CreateRole(RoleModel roleModel)
+        {
+            AppRole appRole = new AppRole();
+            appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = roleModel.Name;
+            appRole.NormalizedName = roleModel.Name.ToUpper();
+            appRole.isDelete = false;
+
+            await _context.AppRole.AddAsync(appRole);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public List<RoleModel> GetAllRolies()
