@@ -10,5 +10,6 @@ namespace Client.Entites
         public string couponId { set; get; }
         public string couponCode { set; get; }
         public int couponPrice { set; get; }
+        public bool isDelete { set; get; }
     }
 }

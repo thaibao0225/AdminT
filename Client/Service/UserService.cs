@@ -17,7 +17,7 @@ namespace Client.Service
 
         public List<UserModel> GetUsers()
         {
-            var query = _context.AppUser;
+            var query = _context.AppUser.Where(x => x.isDelete == false);
 
             List<UserModel> userList = new List<UserModel>();
             foreach (var item in query)
@@ -35,7 +35,7 @@ namespace Client.Service
 
         public UserModel GetUserById(string userId)
         {
-            var query = _context.AppUser.FirstOrDefault(x => x.Id == userId);
+            var query = _context.AppUser.FirstOrDefault(x => x.Id == userId && x.isDelete == false);
 
             if(query != null)
             {
@@ -54,7 +54,7 @@ namespace Client.Service
         {
             if (userModel != null)
             {
-                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == userModel.Id);
+                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == userModel.Id && x.isDelete == false);
 
                 if(queryUser != null)
                 {
@@ -75,7 +75,7 @@ namespace Client.Service
         {
             if (idUser != "")
             {
-                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == idUser);
+                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == idUser && x.isDelete == false );
 
                 if (queryUser != null)
                 {

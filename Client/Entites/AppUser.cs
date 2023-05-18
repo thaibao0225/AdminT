@@ -21,6 +21,9 @@ namespace Client.Entites
         public string bill_PhoneNumber { set; get; }
         public string bill_Address1 { set; get; }
         public string bill_Address2 { set; get; }
+
+        public bool isDelete { set; get; }
+
         //public List<SubReview> SubReviewSR { get; set; }
 
         public List<Bills> BillsAU { get; set; }

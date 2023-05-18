@@ -17,6 +17,7 @@ namespace Client.Service
         {
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           where p.isDelete == false
                            select new { p, c };
 
 
@@ -40,6 +41,7 @@ namespace Client.Service
         {
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           where p.isDelete == false
                            select new { p, c };
             if (products.Any())
             {
@@ -66,6 +68,7 @@ namespace Client.Service
         {
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           where p.isDelete == false
                            select new { p, c };
             if (products.Any())
             {
@@ -96,7 +99,7 @@ namespace Client.Service
 
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
-                           where p.pd_Id == productId
+                           where p.pd_Id == productId && p.isDelete == false
                            select new { p, c };
             if (products.Any())
             {
@@ -128,6 +131,7 @@ namespace Client.Service
         {
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           where p.isDelete == false
                            select new { p, c };
 
             if (products.Any())
@@ -155,6 +159,7 @@ namespace Client.Service
         {
             var products = from p in _context.Products
                            join c in _context.Categories on p.CategoryId equals c.cg_Id
+                           where p.isDelete == false
                            select new { p, c };
 
             if (products.Any())
@@ -190,7 +195,9 @@ namespace Client.Service
 
         public List<CategoriesModel> GetCategories(int size = 0)
         {
-            var categories = from c in _context.Categories select c;
+            var categories = from c in _context.Categories 
+                             where c.idDelete == false
+                             select c;
 
             if (size != 0)
             {

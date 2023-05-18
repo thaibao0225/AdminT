@@ -12,6 +12,7 @@ namespace Client.Entites
         public string cg_Type { set; get; }
         public string cg_Sale { set; get; }
         public string cg_Sex { set; get; }
+        public bool idDelete { set; get; }
         public List<Products> products { get; set; }
 
 

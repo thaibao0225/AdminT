@@ -10,6 +10,7 @@ namespace Client.Entites
         public string ship_Id { set; get; }
         public string ship_Name { set; get; }
         public int ship_Price { set; get; }
+        public bool isDelete { set; get; }
 
 
     }

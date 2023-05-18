@@ -15,7 +15,7 @@ namespace Client.Service
 
         public List<RoleModel> GetAllRolies()
         {
-            var query = _context.AppRole;
+            var query = _context.AppRole.Where(x => x.isDelete == false);
 
             List<RoleModel> roleList = new List<RoleModel>();
             foreach (var item in query)
@@ -27,6 +27,47 @@ namespace Client.Service
             }
 
             return roleList;
+        }
+
+        public RoleModel GetRoleById(string id)
+        {
+            var query = _context.AppRole.FirstOrDefault(x => x.Id == id && x.isDelete == false);
+
+            if (query != null)
+            {
+                RoleModel roleModel = new RoleModel();
+                roleModel.Id = query.Id;
+                roleModel.Name = query.Name;
+
+                return roleModel;
+            }
+            return new RoleModel();
+        }
+
+        public async Task<bool> EditRole (RoleModel roleModel)
+        {
+            var queryRole = _context.AppRole.FirstOrDefault(x => x.Id == roleModel.Id && x.isDelete == false);
+            if (queryRole != null)
+            {
+                queryRole.Name = roleModel.Name;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> DeleteRole(string id)
+        {
+            var queryRole = _context.AppRole.FirstOrDefault(x => x.Id == id);
+            if (queryRole != null)
+            {
+                queryRole.isDelete = true;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

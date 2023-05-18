@@ -12,5 +12,6 @@ namespace Client.Entites
         public string Contact_Phone { set; get; }
         public string Contact_Email { set; get; }
         public string Contact_Description { set; get; }
+        public bool isDelete { set; get; }
     }
 }

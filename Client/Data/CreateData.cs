@@ -80,7 +80,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -99,7 +100,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -118,7 +120,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -137,7 +140,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -156,7 +160,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId1
+                    CategoryId = categoryId1,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -175,7 +180,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId1
+                    CategoryId = categoryId1,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -194,7 +200,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId2
+                    CategoryId = categoryId2,
+                    isDelete = false
                 },
                 new Products()
                 {
@@ -213,7 +220,8 @@ namespace Client.Data
                     pd_NameImg2 = "name img 2",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId2
+                    CategoryId = categoryId2,
+                    isDelete = false
 
                 },
                 new Products()
@@ -233,7 +241,8 @@ namespace Client.Data
                     pd_NameImg2 = "Chain bucket bag",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId1
+                    CategoryId = categoryId1,
+                    isDelete = false
 
                 },
                 new Products()
@@ -253,7 +262,8 @@ namespace Client.Data
                     pd_NameImg2 = "Pendant earrings",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId1
+                    CategoryId = categoryId1,
+                    isDelete = false
 
                 },
                 new Products()
@@ -273,7 +283,8 @@ namespace Client.Data
                     pd_NameImg2 = "Cotton T-Shirt",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId1
+                    CategoryId = categoryId1,
+                    isDelete = false
 
                 },
                 new Products()
@@ -293,7 +304,8 @@ namespace Client.Data
                     pd_NameImg2 = "Cotton T-Shirt",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId2
+                    CategoryId = categoryId2,
+                    isDelete = false
 
                 },
                 new Products()
@@ -313,7 +325,8 @@ namespace Client.Data
                     pd_NameImg2 = "Zip-pockets pebbled tote",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId2
+                    CategoryId = categoryId2,
+                    isDelete = false
 
                 },
                 new Products()
@@ -333,7 +346,8 @@ namespace Client.Data
                     pd_NameImg2 = "Round leather bag",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId2
+                    CategoryId = categoryId2,
+                    isDelete = false
 
                 },
                 new Products()
@@ -353,7 +367,8 @@ namespace Client.Data
                     pd_NameImg2 = "Bow wrap skirt",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
 
                 },
                 new Products()
@@ -373,7 +388,8 @@ namespace Client.Data
                     pd_NameImg2 = "Metallic earrings",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
 
                 },
                 new Products()
@@ -393,7 +409,8 @@ namespace Client.Data
                     pd_NameImg2 = "Flap cross-body bag",
                     pd_NameImg3 = "name img 3",
                     pd_NameImg4 = "name img 4",
-                    CategoryId = categoryId3
+                    CategoryId = categoryId3,
+                    isDelete = false
 
                 }
             );
@@ -413,9 +430,7 @@ namespace Client.Data
             var IdRoleStaff = "f49e4348-718f-43e3-b1f6-6dc89c5Bb4fd";
             var IdRoleAdmin = "360E601E-92F2-4F08-832B-604A21293258";
 
-
-
-            //Table AppRole 2222222222222222222222222222222222222222222222222222222222222222222
+            //Table AppRole
             builder.Entity<AppRole>().HasData(
                 new AppRole()
                 {
@@ -437,7 +452,7 @@ namespace Client.Data
             var IdStaff = "f49e4348-718f-43e3-b1f6-6dc89c5Bb5ff";
             var IdAdmin = "DE544998-A3CC-4E12-ABB4-0642E57BD222";
 
-            //Table AppUser 2222222222222222222222222222222222222222222222222222222222222222222
+            //Table AppUser
             var hasher = new PasswordHasher<AppUser>();
             builder.Entity<AppUser>().HasData(
             new AppUser
@@ -460,8 +475,9 @@ namespace Client.Data
                 bill_Country = "",
                 bill_PhoneNumber = "",
                 bill_PostalCode = "",
-                bill_State = ""
-                
+                bill_State = "",
+                isDelete = false
+
             },
             new AppUser
             {
@@ -483,11 +499,12 @@ namespace Client.Data
                 bill_Country = "",
                 bill_PhoneNumber = "",
                 bill_PostalCode = "",
-                bill_State = ""
+                bill_State = "",
+                isDelete = false
             });
 
 
-            //Table AppUser - role 2222222222222222222222222222222222222222222222222222222222222222222
+            //Table AppUser - role 
             builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>
             {
@@ -521,13 +538,15 @@ namespace Client.Data
                 {
                     couponId = Guid.NewGuid().ToString(),
                     couponCode = "code10",
-                    couponPrice = 10
+                    couponPrice = 10,
+                    isDelete = false
                 },
                 new Coupons()
                 {
                     couponId = Guid.NewGuid().ToString(),
                     couponCode = "code50",
-                    couponPrice = 50
+                    couponPrice = 50,
+                    isDelete = false
                 });
 
            //Ship table 
@@ -538,7 +557,8 @@ namespace Client.Data
                 {
                     ship_Id = shipId,
                     ship_Name = "Ship",
-                    ship_Price = 5
+                    ship_Price = 5,
+                    isDelete = false
                 });
 
             //Table Contact System
@@ -551,7 +571,8 @@ namespace Client.Data
                     Contact_Address = "Address",
                     Contact_Description = "Description",
                     Contact_Email = "Email",
-                    Contact_Phone = "Phone"
+                    Contact_Phone = "Phone",
+                    isDelete = false
                 });
             
 
