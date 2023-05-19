@@ -39,6 +39,7 @@ namespace Client.Controllers
             {
                 string cartId = await _cartService.GetCartId(userId.ToString());
                 ViewBag.CountProductInCart = _cartService.CountProductInCart(cartId);
+                ViewBag.ProductInCart = _cartService.GetAllProductInCart(cartId);
             }
 
             ViewBag.DisCount = _couponServcice.GetCoupon(couponCode);

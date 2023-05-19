@@ -53,7 +53,7 @@ namespace Client.Controllers
             {
                 return Redirect("/accessdenied");
             }
-            await _cartService.AddProductToCart(productId, cartId);
+            await _cartService.AddProductToCart(productId, cartId, "S" , Int16.Parse(quantity));
 
             return Redirect("/cart");
         }

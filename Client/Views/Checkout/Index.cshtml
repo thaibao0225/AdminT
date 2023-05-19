@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    int total = 0;
 }
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -119,16 +120,19 @@
                                     <span class="top__text">Product</span>
                                     <span class="top__text__right">Total</span>
                                 </li>
-                                <li>01. Chain buck bag <span>$ 300.0</span></li>
-                                <li>02. Zip-pockets pebbled<br /> tote briefcase <span>$ 170.0</span></li>
-                                <li>03. Black jean <span>$ 170.0</span></li>
-                                <li>04. Cotton shirt <span>$ 110.0</span></li>
+                                @foreach (var item in ViewBag.ProductInCart)
+                                {
+                                    var itemSum = item.pic_ProductPrice * item.pic_quantity;
+                                    total = itemSum + total;
+                                    <li>@item.pic_ProductName <span>$ @itemSum</span></li>
+                                }
+                                
                             </ul>
                         </div>
                         <div class="checkout__order__total">
                             <ul>
-                                <li>Subtotal <span>$ 750.0</span></li>
-                                <li>Total <span>$ 750.0</span></li>
+@*                                <li>Subtotal <span>$ 750.0</span></li>*@
+                                <li>Total <span>$ @total</span></li>
                             </ul>
                         </div>
                         <div class="checkout__order__widget">
@@ -142,7 +146,12 @@
                                 login at the top of the page.
                             </p>*@
                             <label for="check-payment">
-                                Cheque payment
+                                Payment with cash
+                                <input type="checkbox" id="check-payment">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="check-payment">
+                                Payment with visa
                                 <input type="checkbox" id="check-payment">
                                 <span class="checkmark"></span>
                             </label>
