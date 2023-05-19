@@ -89,8 +89,8 @@ namespace Client.Service
             if (query != null)
             {
                 query.cg_Name = categoriesModel.CategoryName;
-                query.cg_Type = categoriesModel.CategoryType;
-                query.cg_Sex = categoriesModel.CategorySex;
+                query.cg_Type = " ";
+                query.cg_Sex = " ";
 
                 await _context.SaveChangesAsync();
                 return true;
