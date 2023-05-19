@@ -21,6 +21,7 @@ builder.Services.AddTransient<IContactUserService, ContactUserService>();
 builder.Services.AddTransient<IProductsService, ProductsService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 builder.Services.AddTransient<ICouponServcice, CouponServcice>();
+builder.Services.AddTransient<IBillService, BillService>();
 
 var app = builder.Build();
 

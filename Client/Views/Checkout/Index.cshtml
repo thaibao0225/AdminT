@@ -2,7 +2,6 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    int total = 0;
 }
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -35,80 +34,51 @@
                         <div class="col-lg-12 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>First Name <span>*</span></p>
-                                <input type="text" name="firstName" value="1">
+                                <input type="text" name="firstName" value="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Last Name <span>*</span></p>
-                                <input type="text" name="lastName" value="1">
+                                <input type="text" name="lastName" value="">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
                                 <p>Country <span>*</span></p>
-                                <input type="text" name="country" value="1">
+                                <input type="text" name="country" value="">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Address <span>*</span></p>
-                                <input type="text" placeholder="Street Address" name="address" value="1">
+                                <input type="text" placeholder="Street Address" name="address" value="">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Town/City <span>*</span></p>
-                                <input type="text" name="city" value="1">
+                                <input type="text" name="city" value="">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Postcode/Zip <span>*</span></p>
-                                <input type="text" name="zip" value="1">
+                                <input type="text" name="zip" value="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Phone <span>*</span></p>
-                                <input type="text" name="phone" value="1">
+                                <input type="text" name="phone" value="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="checkout__form__input">
                                 <p>Email <span>*</span></p>
-                                <input type="text" name="email" value="1">
+                                <input type="email" name="email" value="">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6" hidden>
                             <div class="checkout__form__input">
                                 <p>Discount <span>*</span></p>
-                                <input type="number" name="discount" value="1">
+                                <input type="number" name="discount" value="@ViewBag.DisCount">
                             </div>
                         </div>
-                        @*<div class="col-lg-12">
-                            <div class="checkout__form__checkbox">
-                                <label for="acc">
-                                    Create an acount?
-                                    <input type="checkbox" id="acc">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <p>
-                                    Create am acount by entering the information below. If you are a returing
-                                    customer login at the <br />top of the page
-                                </p>
-                            </div>
-                            <div class="checkout__form__input">
-                                <p>Account Password <span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__form__checkbox">
-                                <label for="note">
-                                    Note about your order, e.g, special noe for delivery
-                                    <input type="checkbox" id="note">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="checkout__form__input">
-                                <p>Oder notes <span>*</span></p>
-                                <input type="text"
-                                       placeholder="Note about your order, e.g, special noe for delivery">
-                            </div>
-                        </div>*@
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -123,7 +93,6 @@
                                 @foreach (var item in ViewBag.ProductInCart)
                                 {
                                     var itemSum = item.pic_ProductPrice * item.pic_quantity;
-                                    total = itemSum + total;
                                     <li>@item.pic_ProductName <span>$ @itemSum</span></li>
                                 }
                                 
@@ -131,8 +100,8 @@
                         </div>
                         <div class="checkout__order__total">
                             <ul>
-@*                                <li>Subtotal <span>$ 750.0</span></li>*@
-                                <li>Total <span>$ @total</span></li>
+                                <li>Discount <span>$ @ViewBag.DisCount</span></li>
+                                <li>Total <span>$ @ViewBag.Total</span></li>
                             </ul>
                         </div>
                         <div class="checkout__order__widget">
@@ -147,19 +116,14 @@
                             </p>*@
                             <label for="check-payment">
                                 Payment with cash
-                                <input type="checkbox" id="check-payment">
+                                <input type="radio" name="checkPayment" id="check-payment">
                                 <span class="checkmark"></span>
                             </label>
-                            <label for="check-payment">
-                                Payment with visa
-                                <input type="checkbox" id="check-payment">
-                                <span class="checkmark"></span>
-                            </label>
-  @*                          <label for="paypal">
+                            <label for="paypal">
                                 PayPal
-                                <input type="checkbox" id="paypal">
+                                <input type="radio" name="checkPayment" id="paypal">
                                 <span class="checkmark"></span>
-                            </label>*@
+                            </label>
                         </div>
                         <button type="submit" class="site-btn">Place oder</button>
                     </div>

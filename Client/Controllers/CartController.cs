@@ -40,15 +40,17 @@ namespace Client.Controllers
             CouponModel couponModels = _couponService.GetCoupon(couponCode);
             ViewBag.CouponPrice = 0;
             ViewBag.CouponCode = couponCode;
+
+            var productInCart = _cartService.GetAllProductInCart(cartId);
+            int sumPrise = _cartService.GetTotalPrice(productInCart);
+            ViewBag.SumPrice = sumPrise;
             if (couponModels != null)
             {
                 ViewBag.CouponPrice = couponModels.CouponPrice;
+                ViewBag.SumPrice = sumPrise - couponModels.CouponPrice;
             }
             
             
-
-            var  productInCart = _cartService.GetAllProductInCart(cartId);
-            ViewBag.SumPrice = _cartService.GetTotalPrice(productInCart);
 
             ViewBag.CountProductInCart = 0;
             if (userId.Any())

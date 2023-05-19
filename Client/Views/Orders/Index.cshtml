@@ -30,7 +30,6 @@
                                 <th scope="col">Date Create on</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Confirm</th>
-                                <th scope="col">WaitForConfirmation</th>
                                 <th scope="col">WaitPickup</th>
                                 <th scope="col">Delivering</th>
                                 <th scope="col">Delivered</th>
@@ -49,9 +48,6 @@
                                     <td>@item.bill_PaidTotal</td>
                                     <td>
                                         <input type="checkbox" checked="@item.bill_Confirmation" onclick="return false;" />
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" checked="@item.bill_WaitForConfirmation" onclick="return false;" />
                                     </td>
                                     <td>
                                         <input type="checkbox" checked="@item.bill_WaitPickup" onclick="return false;" />

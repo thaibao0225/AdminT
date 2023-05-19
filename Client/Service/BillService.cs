@@ -18,6 +18,41 @@ namespace Client.Service
             _cartService = new CartService(context);
         }
 
+        public List<BillListModel> GetAllBill()
+        {
+            var queryBill = _context.Bills;
+
+            if (queryBill.Count() != 0)
+            {
+                List<BillListModel> billList = new List<BillListModel>();
+                foreach (var item in queryBill)
+                {
+                    var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == item.bill_UserId);
+
+                    BillListModel billModel = new BillListModel();
+                    billModel.Id = item.bill_Id;
+                    billModel.UserName = queryUser.Email;
+                    billModel.bill_PaidTotal = item.bill_PaidTotal;
+                    billModel.bill_Confirmation = item.bill_Confirmation;
+                    billModel.bill_DatetimeOrder = item.bill_DatetimeOrder;
+                    billModel.bill_Shipping = item.bill_Shipping;
+                    billModel.bill_Discount = item.bill_Discount;
+                    billModel.bill_WaitForConfirmation = item.bill_WaitForConfirmation;
+                    billModel.bill_WaitPickup = item.bill_WaitPickup;
+                    billModel.bill_Delivering = item.bill_Delivering;
+                    billModel.bill_Delivered = item.bill_Delivered;
+                    billModel.bill_Cancelled = item.bill_Cancelled;
+
+                    billList.Add(billModel);
+                }
+
+                return billList;
+            }
+
+
+            return new List<BillListModel>();
+        }
+
         public List<BillListModel> GetAllBillByUserId(string userId)
         {
             var queryBill = _context.Bills.Where(x => x.bill_UserId == userId);
@@ -95,7 +130,7 @@ namespace Client.Service
             bill.bill_Quantity = productList.ProductQuantityList;
             bill.bill_Shipping = 0;
             bill.bill_Discount = int.Parse(discount);
-            bill.bill_PaidTotal = _cartService.GetTotalPrice(productsInCartModel);
+            bill.bill_PaidTotal = _cartService.GetTotalPrice(productsInCartModel) - int.Parse(discount);
             bill.bill_Confirmation = false;
             bill.bill_PaymentMethod = "Cash";
             bill.bill_Note = "";
@@ -109,8 +144,6 @@ namespace Client.Service
 
             return true;
         }
-
-
         public BillListModel ConvertStringToListBill(List<ProductsInCartModel> productsInCartModel)
         {
             BillListModel billListModel = new BillListModel();
@@ -128,7 +161,6 @@ namespace Client.Service
 
             return billListModel;
         }
-
 
         public string GetBillId(string userId)
         {
@@ -155,6 +187,68 @@ namespace Client.Service
         public string GenericListInBill(string listedGen, string item, string commad)
         {
             return listedGen + commad + item;
+        }
+        public async Task<bool> ChangeConfirmStatus(string billId)
+        {
+            var bill = _context.Bills.FirstOrDefault(x => x.bill_Id == billId);
+            if (bill != null)
+            {
+                bill.bill_Confirmation = !bill.bill_Confirmation;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> ChangeWaitPickupStatus(string billId)
+        {
+            var bill = _context.Bills.FirstOrDefault(x => x.bill_Id == billId);
+            if (bill != null)
+            {
+                bill.bill_WaitPickup = !bill.bill_WaitPickup;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> ChangeDeliveringStatus(string billId)
+        {
+            var bill = _context.Bills.FirstOrDefault(x => x.bill_Id == billId);
+            if (bill != null)
+            {
+                bill.bill_Delivering = !bill.bill_Delivering;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> ChangeDeliveredStatus(string billId)
+        {
+            var bill = _context.Bills.FirstOrDefault(x => x.bill_Id == billId);
+            if (bill != null)
+            {
+                bill.bill_Delivered = !bill.bill_Delivered;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
+        }
+        public async Task<bool> ChangeCancelledStatus(string billId)
+        {
+            var bill = _context.Bills.FirstOrDefault(x => x.bill_Id == billId);
+            if (bill != null)
+            {
+                bill.bill_Cancelled = !bill.bill_Cancelled;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
         }
     }
 }

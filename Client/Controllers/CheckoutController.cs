@@ -1,4 +1,6 @@
 ﻿using Client.Data;
+using Client.Entites;
+using Client.Models;
 using Client.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,18 +34,28 @@ namespace Client.Controllers
         public async Task<ActionResult> Index(string couponCode)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
 
+            int sumPrise = 0;
             ViewBag.CountProductInCart = 0;
             if (userId.Any())
             {
                 string cartId = await _cartService.GetCartId(userId.ToString());
                 ViewBag.CountProductInCart = _cartService.CountProductInCart(cartId);
-                ViewBag.ProductInCart = _cartService.GetAllProductInCart(cartId);
+                 
+                var productInCart = _cartService.GetAllProductInCart(cartId);
+                ViewBag.ProductInCart = productInCart;
+                sumPrise = _cartService.GetTotalPrice(productInCart);
             }
-
-            ViewBag.DisCount = _couponServcice.GetCoupon(couponCode);
-
+            ViewBag.Total = sumPrise;
+            ViewBag.DisCount = 0;
+            CouponModel couponModels = _couponServcice.GetCoupon(couponCode);
+            if(couponModels != null)
+            {
+                sumPrise = sumPrise - couponModels.CouponPrice;
+                ViewBag.DisCount = couponModels.CouponPrice;
+                ViewBag.Total = sumPrise;
+            }
+            
             return View();
         }
 

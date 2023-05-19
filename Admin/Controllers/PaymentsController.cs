@@ -1,22 +1,66 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Client.Service.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Admin.Controllers
 {
     public class PaymentsController : Controller
     {
+        private readonly IProductsService _productsService;
+        private readonly IBillService  _billService;
+
+        public PaymentsController(IProductsService productsService, IBillService billService)
+        {
+            _productsService = productsService;
+            _billService = billService;
+        }
         // GET: PaymentsController
         [Route("/payments")]
         public ActionResult Index()
         {
-            return View();
+            return View(_billService.GetAllBill());
         }
 
         // GET: PaymentsController/Details/5
-        public ActionResult Details(int id)
+        [Route("/payments/confirm")]
+        public async Task<ActionResult> ConfirmBill(string id)
         {
-            return View();
+            await _billService.ChangeConfirmStatus(id);
+            return RedirectToAction(nameof(Index));
         }
+
+        // GET: PaymentsController/Details/5
+        [Route("/payments/waitpickup")]
+        public async Task<ActionResult> WaitPickupBill(string id)
+        {
+            await _billService.ChangeWaitPickupStatus(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: PaymentsController/Details/5
+        [Route("/payments/delivering")]
+        public async Task<ActionResult> DeliveringBill(string id)
+        {
+            await _billService.ChangeDeliveringStatus(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: PaymentsController/Details/5
+        [Route("/payments/delivered")]
+        public async Task<ActionResult> DeliveredBill(string id)
+        {
+            await _billService.ChangeDeliveredStatus(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: PaymentsController/Details/5
+        [Route("/payments/cancelled")]
+        public async Task<ActionResult> CancelledBill(string id)
+        {
+            await _billService.ChangeCancelledStatus(id);
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: PaymentsController/Create
         public ActionResult Create()
