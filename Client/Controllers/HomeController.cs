@@ -32,7 +32,6 @@ namespace Client.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-
             ViewBag.ProductHostTrend = _products.GetProductsInType(CategoryCommon.HOTTREND, 3);
             ViewBag.ProductBestSaler = _products.GetProductsInType(CategoryCommon.BESTSALER, 3);
             ViewBag.ProductFeature = _products.GetProductsInType(CategoryCommon.FEATURE, 3);

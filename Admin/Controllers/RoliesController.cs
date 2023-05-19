@@ -1,4 +1,5 @@
-﻿using Client.Service.Interface;
+﻿using Client.Models;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,10 +59,11 @@ namespace Admin.Controllers
         [Route("/rolies/Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, IFormCollection collection)
+        public async Task<ActionResult> Edit(string id, RoleModel roleModel)
         {
             try
             {
+                await _roleService.EditRole(roleModel);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,10 +83,11 @@ namespace Admin.Controllers
         [Route("/rolies/Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IFormCollection collection)
+        public async Task<ActionResult> Delete(string id, RoleModel roleModel)
         {
             try
             {
+                await _roleService.DeleteRole(roleModel.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch

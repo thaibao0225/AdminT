@@ -65,8 +65,6 @@ namespace Client.Controllers
         // GET: CheckoutController/Details/5
         public ActionResult Details(int id)
         {
-
-            
             return View();
         }
 
