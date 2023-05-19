@@ -1,4 +1,5 @@
-﻿using Client.Service.Interface;
+﻿using Client.Models;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,7 @@ namespace Admin.Controllers
         [Route("/coupons/detail")]
         public ActionResult Details(string id)
         {
-            return View();
+            return View(_couponServcice.GetCouponById(id));
         }
 
         // GET: CouponController/Create
@@ -36,10 +37,11 @@ namespace Admin.Controllers
         // POST: CouponController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(CouponModel couponModel)
         {
             try
             {
+                await _couponServcice.SetCoupon(couponModel);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -52,17 +54,18 @@ namespace Admin.Controllers
         [Route("/coupons/edit")]
         public ActionResult Edit(string id)
         {
-            return View();
+            return View(_couponServcice.GetCouponById(id));
         }
 
         // POST: CouponController/Edit/5
         [Route("/coupons/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, IFormCollection collection)
+        public async Task<ActionResult> Edit(string id, CouponModel couponModel)
         {
             try
             {
+                await _couponServcice.EditCoupon(couponModel);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -75,17 +78,20 @@ namespace Admin.Controllers
         [Route("/coupons/delete")]
         public ActionResult Delete(string id)
         {
-            return View();
+            return View(_couponServcice.GetCouponById(id));
         }
 
         // POST: CouponController/Delete/5
         [Route("/coupons/delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IFormCollection collection)
+        public async Task<ActionResult> Delete(string id, CouponModel couponModel)
         {
             try
             {
+                await _couponServcice.DeleteCoupon(couponModel.CouponId);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
