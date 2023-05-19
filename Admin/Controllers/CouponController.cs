@@ -35,6 +35,7 @@ namespace Admin.Controllers
         }
 
         // POST: CouponController/Create
+        [Route("/coupons/create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CouponModel couponModel)
