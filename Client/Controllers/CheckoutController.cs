@@ -2,6 +2,8 @@
 using Client.Entites;
 using Client.Models;
 using Client.Service;
+using Client.Service.Interface;
+using Client.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -16,6 +18,7 @@ namespace Client.Controllers
         private readonly CartService _cartService;
         private readonly BillService _billservice;
         private readonly CouponServcice _couponServcice;
+        private readonly ISendMailService _sendMailService;
 
         public CheckoutController(ILogger<CheckoutController> logger, ApplicationDbContext context)
         {
@@ -55,7 +58,7 @@ namespace Client.Controllers
                 ViewBag.DisCount = couponModels.CouponPrice;
                 ViewBag.Total = sumPrise;
             }
-            
+
             return View();
         }
 
@@ -81,6 +84,7 @@ namespace Client.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var queryUser = _context.AppUser.FirstOrDefault(x => x.Id == userId);
 
                 var cartId = await _cartService.GetCartId(userId);
                 var productsInCart = _cartService.GetAllProductInCart(cartId);
@@ -88,7 +92,17 @@ namespace Client.Controllers
                 await _cartService.ClearCartByCartId(cartId);
 
 
-                // Caculator
+                if(queryUser != null)
+                {
+                    MailContent content = new MailContent
+                    {
+                        To = queryUser.Email,
+                        Subject = "Order Success",
+                        Body = "<p><Order Success</strong></p>"
+                    };
+                    await _sendMailService.SendMail(content);
+                }
+
                 return Redirect("/");
             }
             catch
@@ -96,47 +110,6 @@ namespace Client.Controllers
                 return View();
             }
         }
-
-        // GET: CheckoutController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CheckoutController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CheckoutController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CheckoutController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

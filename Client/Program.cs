@@ -2,6 +2,7 @@ using Client.Data;
 using Client.Entites;
 using Client.Service;
 using Client.Service.Interface;
+using Client.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,10 @@ builder.Services.AddTransient<IContactUserService, ContactUserService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
 builder.Services.AddTransient<IBillService, BillService>();
 builder.Services.AddTransient<ICartService, CartService>();
+builder.Services.AddTransient<ISendMailService, SendMailService>();
+
+var mailsettings = builder.Configuration.GetSection("MailSettings");
+builder.Services.Configure<MailSettings>(mailsettings);
 
 var app = builder.Build();
 
