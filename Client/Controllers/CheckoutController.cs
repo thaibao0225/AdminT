@@ -73,9 +73,11 @@ namespace Client.Controllers
                 var cartId = await _cartService.GetCartId(userId);
                 var productsInCart = _cartService.GetAllProductInCart(cartId);
                 await _billservice.CreateBillForUser(collection, userId, productsInCart);
+                await _cartService.ClearCartByCartId(cartId);
+
 
                 // Caculator
-                return RedirectToAction(nameof(Index));
+                return Redirect("/");
             }
             catch
             {

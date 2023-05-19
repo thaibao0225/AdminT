@@ -2,6 +2,7 @@
 using Client.Entites;
 using Client.Models;
 using Client.Service.Interface;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Client.Service
 {
@@ -130,6 +131,19 @@ namespace Client.Service
             }
             return 0;
             
+        }
+
+        public async Task<bool> ClearCartByCartId(string cartId)
+        {
+            var productInCart = _context.ProductInCart.Where(x => x.pic_CartId == cartId);
+            if(productInCart.Count() != 0)
+            {
+                _context.ProductInCart.RemoveRange(productInCart);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
     }
 }
