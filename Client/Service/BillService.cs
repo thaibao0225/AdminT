@@ -2,6 +2,8 @@
 using Client.Entites;
 using Client.Models;
 using Client.Service.Interface;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Collections.Generic;
 
 namespace Client.Service
 {
@@ -14,6 +16,39 @@ namespace Client.Service
 
             _context = context;
             _cartService = new CartService(context);
+        }
+
+        public List<BillListModel> GetAllBillByUserId(string userId)
+        {
+            var queryBill = _context.Bills.Where(x => x.bill_UserId == userId);
+
+            if (queryBill.Count() != 0)
+            {
+                List<BillListModel> billList = new List<BillListModel>();
+                foreach (var item in queryBill)
+                {
+                    BillListModel billModel = new BillListModel();
+                    billModel.Id = item.bill_Id;
+                    billModel.UserName = "test";
+                    billModel.bill_PaidTotal = item.bill_PaidTotal;
+                    billModel.bill_Confirmation = item.bill_Confirmation;
+                    billModel.bill_DatetimeOrder = item.bill_DatetimeOrder;
+                    billModel.bill_Shipping = item.bill_Shipping;
+                    billModel.bill_Discount = item.bill_Discount;
+                    billModel.bill_WaitForConfirmation = item.bill_WaitForConfirmation;
+                    billModel.bill_WaitPickup = item.bill_WaitPickup;
+                    billModel.bill_Delivering = item.bill_Delivering;
+                    billModel.bill_Delivered = item.bill_Delivered;
+                    billModel.bill_Cancelled = item.bill_Cancelled;
+
+                    billList.Add(billModel);
+                }
+
+                return billList;
+            }
+
+
+            return new List<BillListModel>();
         }
 
         public async Task<bool> CreateBillForUser(IFormCollection collection, string userId, List<ProductsInCartModel> productsInCartModel
@@ -32,7 +67,7 @@ namespace Client.Service
 
             // Add information
             var user = _context.AppUser.FirstOrDefault(x => x.Id == userId);
-            
+
             if (user != null)
             {
                 user.FirstName = firstName;
@@ -71,7 +106,7 @@ namespace Client.Service
             await _context.SaveChangesAsync();
 
 
-            
+
             return true;
         }
 
@@ -98,7 +133,7 @@ namespace Client.Service
         public string GetBillId(string userId)
         {
             var bill = _context.Bills.FirstOrDefault(x => x.bill_UserId == userId);
-            if(bill != null)
+            if (bill != null)
             {
                 return bill.bill_Id;
             }

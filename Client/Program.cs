@@ -21,6 +21,8 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IContactUserService, ContactUserService>();
 builder.Services.AddTransient<ICategoriesService, CategoriesService>();
+builder.Services.AddTransient<IBillService, BillService>();
+builder.Services.AddTransient<ICartService, CartService>();
 
 var app = builder.Build();
 

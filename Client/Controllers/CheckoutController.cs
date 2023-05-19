@@ -10,10 +10,10 @@ namespace Client.Controllers
     {
         private readonly ILogger<CheckoutController> _logger;
         private readonly ApplicationDbContext _context;
-        private ProductsService _products;
-        private CartService _cartService;
-        private BillService _billservice;
-        private CouponServcice _couponServcice;
+        private readonly ProductsService _products;
+        private readonly CartService _cartService;
+        private readonly BillService _billservice;
+        private readonly CouponServcice _couponServcice;
 
         public CheckoutController(ILogger<CheckoutController> logger, ApplicationDbContext context)
         {

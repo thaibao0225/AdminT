@@ -8,5 +8,6 @@ namespace Client.Service.Interface
         public Task<Task> AddProductToCart(string productId, string cartId, string size, int quantity, string color);
         public List<ProductsInCartModel> GetAllProductInCart(string cartId);
         public Task<bool> ClearCartByCartId(string cartId);
+        public int CountProductInCart(string cartId);
     }
 }

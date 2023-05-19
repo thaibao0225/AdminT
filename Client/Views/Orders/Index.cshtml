@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Client.Models.BillListModel>
+
+@{
+    int index = 0;
+}
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                   
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Date Create on</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Confirm</th>
+                                <th scope="col">WaitForConfirmation</th>
+                                <th scope="col">WaitPickup</th>
+                                <th scope="col">Delivering</th>
+                                <th scope="col">Delivered</th>
+                                <th scope="col">Cancelled</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                index++;
+                                <tr>
+                                    <th scope="row">@index</th>
+                                    <td>
+                                        @item.bill_DatetimeOrder
+                                    </td>
+                                    <td>@item.bill_PaidTotal</td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_Confirmation" onclick="return false;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_WaitForConfirmation" onclick="return false;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_WaitPickup" onclick="return false;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_Delivering" onclick="return false;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_Delivered" onclick="return false;" />
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" checked="@item.bill_Cancelled" onclick="return false;" />
+                                    </td>
+                                </tr>
+                            }
+                           
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
