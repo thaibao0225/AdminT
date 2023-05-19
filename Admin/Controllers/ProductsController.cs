@@ -1,4 +1,5 @@
-﻿using Client.Service.Interface;
+﻿using Client.Models;
+using Client.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,10 +61,11 @@ namespace Admin.Controllers
         [Route("/products/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, IFormCollection collection)
+        public async Task<ActionResult> Edit(string id, ProductsModel productsModel)
         {
             try
             {
+                await _productsService.EditProduct(productsModel);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -83,10 +85,12 @@ namespace Admin.Controllers
         [Route("/products/delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IFormCollection collection)
+        public async Task<ActionResult> Delete(string id, ProductsModel productsModel)
         {
             try
             {
+
+                await _productsService.DeleteProduct(productsModel.pd_Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
